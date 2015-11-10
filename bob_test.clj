@@ -1,48 +1,46 @@
 (ns bob-test
-  (:require [clojure.test :refer :all]))
+  (:require [clojure.test :refer :all]
+            [bob :refer :all])
+  (:use midje.sweet))
 
-(load-file "bob.clj")
+(fact "responds-to-something"
+      (response-for "Tom-ay-to, tom-aaaah-to.") => "Whatever.")
 
-(deftest responds-to-something
-  (is (= "Whatever." (bob/response-for "Tom-ay-to, tom-aaaah-to."))))
+(fact "responds-to-shouts"
+      (response-for "WATCH OUT!") => "Whoa, chill out!")
 
-(deftest responds-to-shouts
-  (is (= "Whoa, chill out!" (bob/response-for "WATCH OUT!"))))
+(fact "responds-to-questions"
+      (response-for "Does this cryogenic chamber make me look fat?") => "Sure.")
 
-(deftest responds-to-questions
-  (is (= "Sure." (bob/response-for "Does this cryogenic chamber make me look fat?"))))
+(fact "responds-to-forceful-talking"
+      (response-for "Let's go make out behind the gym!") => "Whatever.")
 
-(deftest responds-to-forceful-talking
-  (is (= "Whatever." (bob/response-for "Let's go make out behind the gym!"))))
+(fact "responds-to-acronyms"
+      (response-for "It's OK if you don't want to go to the DMV.") => "Whatever.")
 
-(deftest responds-to-acronyms
-  (is (= "Whatever." (bob/response-for "It's OK if you don't want to go to the DMV."))))
+(fact "responds-to-forceful-questions"
+      (response-for "WHAT THE HELL WERE YOU THINKING?") => "Whoa, chill out!")
 
-(deftest responds-to-forceful-questions
-  (is (= "Whoa, chill out!" (bob/response-for "WHAT THE HELL WERE YOU THINKING?"))))
+(fact "responds-to-shouting-with-special-characters"
+      (response-for "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!") => "Whoa, chill out!")
 
-(deftest responds-to-shouting-with-special-characters
-  (is (= "Whoa, chill out!" (bob/response-for "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"))))
+(fact "responds-to-shouting-numbers"
+      (response-for "1, 2, 3 GO!") => "Whoa, chill out!")
 
-(deftest responds-to-shouting-numbers
-  (is (= "Whoa, chill out!" (bob/response-for "1, 2, 3 GO!"))))
+(fact "responds-to-shouting-with-no-exclamation-mark"
+      (response-for "I HATE YOU") => "Whoa, chill out!")
 
-(deftest responds-to-shouting-with-no-exclamation-mark
-  (is (= "Whoa, chill out!" (bob/response-for "I HATE YOU"))))
+(fact "responds-to-statement-containing-question-mark"
+      (response-for "Ending with ? means a question.") => "Whatever.")
 
-(deftest responds-to-statement-containing-question-mark
-  (is (= "Whatever." (bob/response-for "Ending with ? means a question."))))
+(fact "responds-to-silence"
+      (response-for "") => "Fine. Be that way!")
 
-(deftest responds-to-silence
-  (is (= "Fine. Be that way!" (bob/response-for ""))))
+(fact "responds-to-prolonged-silence"
+      (response-for "    ") => "Fine. Be that way!")
 
-(deftest responds-to-prolonged-silence
-  (is (= "Fine. Be that way!" (bob/response-for "    "))))
+(fact "responds-to-only-numbers"
+      (response-for "1, 2, 3") => "Whatever.")
 
-(deftest responds-to-only-numbers
-  (is (= "Whatever." (bob/response-for "1, 2, 3"))))
-
-(deftest responds-to-number-question
-  (is (= "Sure." (bob/response-for "4?"))))
-
-(run-tests)
+(fact "responds-to-number-question"
+      (response-for "4?") => "Sure.")
