@@ -9,7 +9,7 @@
 (fact "responds-to-shouts"
       (response-for "WATCH OUT!") => "Whoa, chill out!")
 
-(future-fact "responds-to-questions"
+(fact "responds-to-questions"
       (response-for "Does this cryogenic chamber make me look fat?") => "Sure.")
 
 (future-fact "responds-to-forceful-talking"
@@ -44,3 +44,13 @@
 
 (future-fact "responds-to-number-question"
       (response-for "4?") => "Sure.")
+
+(facts "about input-is-question?"
+       (fact "returns true when input is a question"
+             (input-is-question? "Does this cryogenic chamber make me look fat?") => true)
+       (facts "returns false"
+              (fact "when input does not contain a quesion mark"
+                    (input-is-question? "Does this cryogenic chamber make me look fat.") => false)
+              (fact "when input contains a question but is not a question"
+                    (input-is-question? "Does this cryogenic chamber make me look fat.") => false)))
+
