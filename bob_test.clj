@@ -47,39 +47,39 @@
 
 (facts "about input-is-question?"
        (fact "returns true when input is a question"
-             (input-is-question? "Does this cryogenic chamber make me look fat?") => true)
+             (is-question? "Does this cryogenic chamber make me look fat?") => true)
        (facts "returns false"
               (fact "when input does not contain a quesion mark"
-                    (input-is-question? "Does this cryogenic chamber make me look fat.") => false)
+                    (is-question? "Does this cryogenic chamber make me look fat.") => false)
               (fact "when input contains a question but is not a question"
-                    (input-is-question? "Does this cryogenic chamber make me look fat.") => false)))
+                    (is-question? "Does this cryogenic chamber make me look fat.") => false)))
 
 (facts "about input-is-silence?"
        (facts "returns truthy"
               (fact "when input is silence"
-                    (input-is-silence? "") => truthy)
+                    (is-silence? "") => truthy)
               (fact "when input is prolonged silence"
-                    (input-is-silence? "    ") => truthy))
+                    (is-silence? "    ") => truthy))
        (facts "returns falsey"
               (fact "when input is not silence"
-                    (input-is-silence? "agagag") => falsey)
+                    (is-silence? "agagag") => falsey)
               (fact "when input is silence followed by input"
-                    (input-is-silence? "        agagag") => falsey)
+                    (is-silence? "        agagag") => falsey)
               (fact "when input is input followed by silence"
-                    (input-is-silence? "gagagag        ") => falsey)))
+                    (is-silence? "gagagag        ") => falsey)))
 
 (facts "about input-is-uppercase?"
        (facts "returns truthy"
              (fact "when input is uppercase"
-                   (input-is-uppercase? "TEST") => truthy)
+                   (is-uppercase? "TEST") => truthy)
               (fact "when input is uppercase and contains punctuation"
-                    (input-is-uppercase? "TEST!!") => truthy)
+                    (is-uppercase? "TEST!!") => truthy)
               (fact "when input is uppercase and is a question"
-                    (input-is-uppercase? "TEST?") => truthy)
+                    (is-uppercase? "TEST?") => truthy)
               (fact "when input is uppercase and contains numbers"
-                    (input-is-uppercase? "TEST1") => truthy))
+                    (is-uppercase? "TEST1") => truthy))
        (facts "returns falsey"
               (fact "when input is not uppercase"
-                    (input-is-uppercase? "test") => falsey)
+                    (is-uppercase? "test") => falsey)
               (fact "when input is partially uppercase"
-                    (input-is-uppercase? "TesT") => falsey)))
+                    (is-uppercase? "TesT") => falsey)))
