@@ -39,10 +39,10 @@
 (fact "responds-to-prolonged-silence"
       (response-for "    ") => "Fine. Be that way!")
 
-(future-fact "responds-to-only-numbers"
+(fact "responds-to-only-numbers"
       (response-for "1, 2, 3") => "Whatever.")
 
-(future-fact "responds-to-number-question"
+(fact "responds-to-number-question"
       (response-for "4?") => "Sure.")
 
 (facts "about input-is-question?"
@@ -55,15 +55,31 @@
                     (input-is-question? "Does this cryogenic chamber make me look fat.") => false)))
 
 (facts "about input-is-silence?"
-       (facts "returns true"
+       (facts "returns truthy"
               (fact "when input is silence"
                     (input-is-silence? "") => truthy)
               (fact "when input is prolonged silence"
                     (input-is-silence? "    ") => truthy))
-       (facts "returns false"
+       (facts "returns falsey"
               (fact "when input is not silence"
                     (input-is-silence? "agagag") => falsey)
               (fact "when input is silence followed by input"
                     (input-is-silence? "        agagag") => falsey)
               (fact "when input is input followed by silence"
                     (input-is-silence? "gagagag        ") => falsey)))
+
+(facts "about input-is-uppercase?"
+       (facts "returns truthy"
+             (fact "when input is uppercase"
+                   (input-is-uppercase? "TEST") => truthy)
+              (fact "when input is uppercase and contains punctuation"
+                    (input-is-uppercase? "TEST!!") => truthy)
+              (fact "when input is uppercase and is a question"
+                    (input-is-uppercase? "TEST?") => truthy)
+              (fact "when input is uppercase and contains numbers"
+                    (input-is-uppercase? "TEST1") => truthy))
+       (facts "returns falsey"
+              (fact "when input is not uppercase"
+                    (input-is-uppercase? "test") => falsey)
+              (fact "when input is partially uppercase"
+                    (input-is-uppercase? "TesT") => falsey)))
