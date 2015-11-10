@@ -6,7 +6,7 @@
 (fact "responds-to-something"
       (response-for "Tom-ay-to, tom-aaaah-to.") => "Whatever.")
 
-(future-fact "responds-to-shouts"
+(fact "responds-to-shouts"
       (response-for "WATCH OUT!") => "Whoa, chill out!")
 
 (future-fact "responds-to-questions"
