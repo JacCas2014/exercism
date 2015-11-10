@@ -3,7 +3,7 @@
             [bob :refer :all])
   (:use midje.sweet))
 
-(future-fact "responds-to-something"
+(fact "responds-to-something"
       (response-for "Tom-ay-to, tom-aaaah-to.") => "Whatever.")
 
 (future-fact "responds-to-shouts"
