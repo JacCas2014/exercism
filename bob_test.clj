@@ -33,10 +33,10 @@
 (fact "responds-to-statement-containing-question-mark"
       (response-for "Ending with ? means a question.") => "Whatever.")
 
-(future-fact "responds-to-silence"
+(fact "responds-to-silence"
       (response-for "") => "Fine. Be that way!")
 
-(future-fact "responds-to-prolonged-silence"
+(fact "responds-to-prolonged-silence"
       (response-for "    ") => "Fine. Be that way!")
 
 (future-fact "responds-to-only-numbers"
@@ -54,3 +54,16 @@
               (fact "when input contains a question but is not a question"
                     (input-is-question? "Does this cryogenic chamber make me look fat.") => false)))
 
+(facts "about input-is-silence?"
+       (facts "returns true"
+              (fact "when input is silence"
+                    (input-is-silence? "") => truthy)
+              (fact "when input is prolonged silence"
+                    (input-is-silence? "    ") => truthy))
+       (facts "returns false"
+              (fact "when input is not silence"
+                    (input-is-silence? "agagag") => falsey)
+              (fact "when input is silence followed by input"
+                    (input-is-silence? "        agagag") => falsey)
+              (fact "when input is input followed by silence"
+                    (input-is-silence? "gagagag        ") => falsey)))
