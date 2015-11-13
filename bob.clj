@@ -1,13 +1,14 @@
-(ns bob)
+(ns bob
+  (:require [clojure.string :as string]))
 
 (defn- remove-punctuation [input]
   (apply str (re-seq #"[a-zA-Z]" input)))
 
 (defn is-question? [input]
-  (= (.indexOf input "?") (- (.length input) 1)))
+  (.endsWith input "?"))
 
 (defn is-silence? [input]
-  (or (empty? input) (re-matches #"\s+" input)))
+  (string/blank? input))
 
 (defn is-uppercase? [input]
   (let [input-without-punctuation (remove-punctuation input)]
