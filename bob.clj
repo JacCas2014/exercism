@@ -14,10 +14,8 @@
     (and (not-empty input-without-punctuation) (re-matches #"\p{Upper}+" input-without-punctuation))))
 
 (defn response-for [input]
-  (if (is-silence? input)
-    "Fine. Be that way!"
-    (if (is-uppercase? input)
-      "Whoa, chill out!"
-      (if (is-question? input)
-        "Sure."
-        "Whatever."))))
+  (cond
+    (is-silence? input) "Fine. Be that way!"
+    (is-uppercase? input) "Whoa, chill out!"
+    (is-question? input) "Sure."
+    :default "Whatever."))
